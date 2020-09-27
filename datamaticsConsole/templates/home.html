@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+<head>
+    <title>Datamatics Console</title>
+    {% block head %}
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" href="{% static 'img/icon.jpg' %}">
+    <link rel="icon" type="image/jpg" href="{% static 'img/icon.jpg' %}">
+
+
+     <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% 'static', filename='css/main.css' %">
+
+
+    <!-- Optional JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript"  src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript"  src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="">
+                    <img src="{% static 'img/logo.jpg' %}" alt="logo" style="width:125px;height:22px"/>
+                </a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="/datamaticsConsole/">Home</a></li>
+                <li><a href="/datamaticsConsole/search">Search</a></li>
+                <li><a href="#">Analyze</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <style type="text/css">
+    th {
+        width: 10% !important;
+        background-color: #cc0000;
+        color: white;
+    }
+    .thead {
+        text-align: center;
+        padding: 5px;
+    }
+
+    }
+    </style>
+
+<!--    <script>-->
+<!--    $(document).ready(function(){-->
+<!--    $('#table-overview').dataTable();-->
+<!--    });-->
+<!--</script>-->
+{% endblock %}
+</head>
+
+<body>
+    {% block body %}
+    <section class="content-header">
+        <ol class="breadcrumb">
+            <li><i class="home-dashboard"></i>
+                <h3><b> Data Overview   </b> <small></small></h3>
+            </li>
+        </ol>
+    </section>
+
+    <div class="table-responsive">
+        <table class = "table table-bordered table-responsive text-nowrap" id="table-overview">
+            <thead>
+            <tr>
+                <th>Schema Name</th>
+                <th>Table Name</th>
+                <th>Table Count</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for i in tableList %}
+            <tr>
+                <td>{{ i.SCHEMA_NAME }}</td>
+                <td>{{ i.TABLE_NAME  }}</td>
+                <td>{{ i.TABLE_COUNT }}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+            <p> </p>
+        </table>
+    </div>
+    <script src = "js/jquery-3.2.1.min.js"></script>
+    <script src = "js/main.js"></script>
+    <script src = "js/impExt.js"></script>
+    <script src="js/confRoom.js"></script>
+    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
+    <script type="text/javascript">
+         $(document).ready(function() {
+            $('#table-overview').DataTable();
+         } );
+     </script>
+
+    <section class="content-header">
+        <ol class="breadcrumb">
+            <li><i class="home-dashboard"></i>
+                <h3><b></b> </h3>
+            </li>
+        </ol>
+    </section>
+
+    <div class="table-responsive">
+        <table class = "table table-bordered table-responsive text-nowrap" id="column-overview">
+            <thead>
+            <tr>
+                <th>Table Name</th>
+                <th>Column Name</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for i in columnList %}
+            <tr>
+                <td>{{ i.TABLE_NAME  }}</td>
+                <td>{{ i.COLUMN_NAME }}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <script src = "js/jquery-3.2.1.min.js"></script>
+    <script src = "js/main.js"></script>
+    <script src = "js/impExt.js"></script>
+    <script src="js/confRoom.js"></script>
+    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
+    <script type="text/javascript">
+         $(document).ready(function() {
+            $('#column-overview').DataTable();
+         } );
+     </script>
+
+
+    <section class="content-header">
+        <ol class="breadcrumb">
+            <li><i class="home-dashboard"></i>
+                <h3><b></b> </h3>
+            </li>
+        </ol>
+    </section>
+    {% endblock %}
+</body>
+</html>
